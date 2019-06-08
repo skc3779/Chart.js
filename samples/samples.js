@@ -23,6 +23,9 @@
 	}, {
 		title: 'Line charts',
 		items: [{
+			title: 'Pressure',
+			path: 'charts/line/basic_pressure.html'
+		}, {
 			title: 'Basic',
 			path: 'charts/line/basic.html'
 		}, {

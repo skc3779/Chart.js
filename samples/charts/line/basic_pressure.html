@@ -1,0 +1,351 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+	<title>Line Chart</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1,user-scalable=no">
+	<script src="../../../dist/Chart.min.js"></script>
+	<script src="../../utils.js"></script>
+	<script src="https://rawgit.com/chartjs/chartjs-plugin-annotation/master/chartjs-plugin-annotation.js"></script>
+	<style>
+	canvas {
+		-moz-user-select: none;
+		-webkit-user-select: none;
+		-ms-user-select: none;
+	}
+	</style>
+</head>
+
+<body>
+	<div style="width:100%;">
+		<canvas id="canvas"></canvas>
+	</div>
+	<br>
+	<br>
+	<script>
+
+		var config = {
+			type: 'line',
+			options: {
+				responsive: true,
+				title: {
+					display: false,
+					text: 'Chart.js - Gridline Background',
+				},
+				scales: {
+					xAxes: [{
+						type: 'linear',
+						position: 'bottom',
+						ticks: {
+							min: 70,
+							max: 200,
+							stepSize: 10,
+							fixedStepSize: 10,
+						},
+						gridLines: {
+							color: 'rgba(171,171,171,1)',
+							lineWidth: 1
+						}
+					}],
+					yAxes: [{
+						ticks: {
+							min: 40,
+							max: 120,
+							stepSize: 10,
+							fixedStepSize: 10,
+						},
+						gridLines: {
+							color: 'rgba(171,171,171,1)',
+							lineWidth: 0.5
+						}
+					}]
+				},
+				annotation: {
+					annotations: [{
+						drawTime: 'beforeDatasetsDraw',
+						type: 'box',
+						xScaleID: 'x-axis-0',
+						yScaleID: 'y-axis-0',
+						yMin: 40,
+						yMax: 60,
+						xMin: 70,
+						xMax: 100,
+						borderColor: 'rgba(122,203,241,1)',
+						borderWidth: 1,
+						backgroundColor: 'rgba(122,203,241,0.75)'
+					},
+					{
+						drawTime: 'afterDatasetsDraw',
+						type: 'line',
+						mode: 'horizontal',
+						id: 'y-line-1',
+						scaleID: 'y-axis-0',
+						borderColor: 'rgba(122,203,241,0)',
+						borderWidth: 0,
+						value: 50,
+						label: {
+							backgroundColor: 'rgba(122,203,241,1)',
+							fontSize: 10,
+							content: '저혈압',
+							enabled: true,
+							xPadding: 6,
+							xAdjust: -180,
+						}
+					},
+					{
+						drawTime: 'beforeDatasetsDraw',
+						type: 'box',
+						yScaleID: 'y-axis-0',
+						xScaleID: 'x-axis-0',
+						yMin: 60,
+						yMax: 80,
+						xMin: 70,
+						xMax: 100,
+						borderColor: 'rgba(50,156,214,1)',
+						borderWidth: 1,
+						backgroundColor: 'rgba(50,156,214,0.75)',
+					},
+					{
+						drawTime: 'beforeDatasetsDraw',
+						type: 'box',
+						yScaleID: 'y-axis-0',
+						xScaleID: 'x-axis-0',
+						yMax: 80,
+						xMin: 100,
+						xMax: 120,
+						borderColor: 'rgba(50,156,214,1)',
+						borderWidth: 1,
+						backgroundColor: 'rgba(50,156,214,0.75)',
+					},
+					{
+						drawTime: 'afterDatasetsDraw',
+						type: 'line',
+						mode: 'horizontal',
+						id: 'y-line-2',
+						scaleID: 'y-axis-0',
+						borderColor: 'rgba(50,156,214,0)',
+						borderWidth: 0,
+						value: 70,
+						label: {
+							backgroundColor: 'rgba(50,156,214,1)',
+							content: '낮은정상',
+							enabled: true,
+							xPadding: 6,
+							xAdjust: -180,
+						}
+					},
+					{
+						drawTime: 'beforeDatasetsDraw',
+						type: 'box',
+						yScaleID: 'y-axis-0',
+						xScaleID: 'x-axis-0',
+						yMin: 80,
+						yMax: 85,
+						xMin: 70,
+						xMax: 120,
+						borderColor: 'rgba(83,174,103,1)',
+						borderWidth: 1,
+						backgroundColor: 'rgba(83,174,103,0.75)',
+					},
+					{
+						drawTime: 'beforeDatasetsDraw',
+						type: 'box',
+						yScaleID: 'y-axis-0',
+						xScaleID: 'x-axis-0',
+						yMax: 85,
+						xMin: 120,
+						xMax: 130,
+						borderColor: 'rgba(83,174,103,1)',
+						borderWidth: 1,
+						backgroundColor: 'rgba(83,174,103,0.75)',
+					},
+					{
+						drawTime: 'afterDatasetsDraw',
+						type: 'line',
+						mode: 'horizontal',
+						id: 'y-line-3',
+						scaleID: 'y-axis-0',
+						borderColor: 'rgba(83,174,103,0)',
+						borderWidth: 0,
+						value: 80,
+						label: {
+							backgroundColor: 'rgba(83,174,103,1)',
+							content: '정상',
+							enabled: true,
+							xPadding: 6,
+							xAdjust: -180,
+						}
+					},
+					{
+						drawTime: 'beforeDatasetsDraw',
+						type: 'box',
+						yScaleID: 'y-axis-0',
+						xScaleID: 'x-axis-0',
+						yMin: 85,
+						yMax: 90,
+						xMin: 70,
+						xMax: 130,
+						borderColor: 'rgba(253,210,49,1)',
+						borderWidth: 1,
+						backgroundColor: 'rgba(253,210,49,0.75)',
+					},
+					{
+						drawTime: 'beforeDatasetsDraw',
+						type: 'box',
+						yScaleID: 'y-axis-0',
+						xScaleID: 'x-axis-0',
+						yMax: 90,
+						xMin: 130,
+						xMax: 140,
+						borderColor: 'rgba(253,210,49,1)',
+						borderWidth: 1,
+						backgroundColor: 'rgba(253,210,49,0.75)',
+					},
+					{
+						drawTime: 'afterDatasetsDraw',
+						type: 'line',
+						mode: 'horizontal',
+						id: 'y-line-4',
+						scaleID: 'y-axis-0',
+						borderColor: 'rgba(253,210,49,0)',
+						borderWidth: 0,
+						value: 90,
+						label: {
+							backgroundColor: 'rgba(253,210,49,1)',
+							content: '높은정상',
+							enabled: true,
+							xPadding: 6,
+							xAdjust: -180,
+						}
+					},
+					{
+						drawTime: 'beforeDatasetsDraw',
+						type: 'box',
+						yScaleID: 'y-axis-0',
+						xScaleID: 'x-axis-0',
+						yMin: 90,
+						yMax: 100,
+						xMin: 70,
+						xMax: 140,
+						borderColor: 'rgba(239,144,50,1)',
+						borderWidth: 1,
+						backgroundColor: 'rgba(239,144,50,0.75)',
+					},
+					{
+						drawTime: 'beforeDatasetsDraw',
+						type: 'box',
+						yScaleID: 'y-axis-0',
+						xScaleID: 'x-axis-0',
+						yMax: 100,
+						xMin: 140,
+						xMax: 160,
+						borderColor: 'rgba(239,144,50,1)',
+						borderWidth: 1,
+						backgroundColor: 'rgba(239,144,50,0.75)',
+					},
+					{
+						drawTime: 'afterDatasetsDraw',
+						type: 'line',
+						mode: 'horizontal',
+						id: 'y-line-5',
+						scaleID: 'y-axis-0',
+						borderColor: 'rgba(239,144,50,0)',
+						borderWidth: 0,
+						value: 100,
+						label: {
+							backgroundColor: 'rgba(239,144,50,1)',
+							content: '고혈압경증범위',
+							enabled: true,
+							xPadding: 6,
+							xAdjust: -180,
+						}
+					},
+					{
+						drawTime: 'beforeDatasetsDraw',
+						type: 'box',
+						yScaleID: 'y-axis-0',
+						xScaleID: 'x-axis-0',
+						yMin: 100,
+						yMax: 120,
+						xMin: 70,
+						xMax: 160,
+						borderColor: 'rgba(228,81,47,1)',
+						borderWidth: 1,
+						backgroundColor: 'rgba(228,81,47,0.75)',
+					},
+					{
+						drawTime: 'beforeDatasetsDraw',
+						type: 'box',
+						yScaleID: 'y-axis-0',
+						xScaleID: 'x-axis-0',
+						yMax: 120,
+						xMin: 160,
+						xMax: 200,
+						borderColor: 'rgba(228,81,47,1)',
+						borderWidth: 1,
+						backgroundColor: 'rgba(228,81,47,0.75)',
+					},
+					{
+						drawTime: 'afterDatasetsDraw',
+						type: 'line',
+						mode: 'horizontal',
+						id: 'y-line-6',
+						scaleID: 'y-axis-0',
+						borderColor: 'rgba(228,81,47,0)',
+						borderWidth: 0,
+						value: 110,
+						label: {
+							backgroundColor: 'rgba(228,81,47,1)',
+							content: '고혈압중증범위',
+							enabled: true,
+							xPadding: 6,
+							xAdjust: -180,
+						}
+					}],
+
+				}
+			},
+			data: {
+				datasets: [{
+					label: ['2017년'],
+					data: [
+						{x: 105, y: 75}
+					],
+					backgroundColor: window.chartColors.blue,
+					borderColor: 'rgba(0, 0, 0, 1)',
+					borderWidth: 2,
+					fill: true,
+				},
+				{
+					label: ['2018년'],
+					data: [
+						{x: 120, y: 80}
+					],
+					backgroundColor: window.chartColors.red,
+					borderColor: 'rgba(0, 0, 0, 1)',
+					borderWidth: 2,
+					fill: true,
+				},
+				{
+					label: ['2019년'],
+					data: [
+						{x: 120, y: 75}
+					],
+					backgroundColor: window.chartColors.yellow,
+					borderColor: 'rgba(0, 0, 0, 1)',
+					borderWidth: 2,
+					fill: true,
+				}],
+			}
+		};
+
+		window.onload = function() {
+			var ctx = document.getElementById('canvas').getContext('2d');
+			window.myLine = new Chart(ctx, config);
+		};
+	</script>
+
+</body>
+</html>
